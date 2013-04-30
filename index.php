@@ -13,6 +13,14 @@ $admin_ip = array(
     '127.0.0.1',
     '::1',
 );
+
+// Repertoires à ignorer dans les projets
+$projectsListIgnore = array(
+    '.',
+    '..',
+    '_h5ai',
+);
+
 $admin = in_array($_SERVER['REMOTE_ADDR'], $admin_ip) ? true : false;
 $page = (isset($_GET['admin']) && $admin) ? 'admin_'.$_GET['admin'] : 'index';
 
@@ -209,14 +217,6 @@ if($serverStatus == 'offline'){
     $serverStatusCol = '#74c200';
     $switch_online_offline = $langues[$langue]['passerHorsLigne'];
 }
-
-
-// Repertoires à ignorer dans les projets
-$projectsListIgnore = array(
-    '.',
-    '..',
-    'h5ai'
-);
 
 
 
