@@ -29,3 +29,8 @@ En ce qui concerne les favicons, HomeWAMP recherchera de lui-même s'il existe u
 
 ## Auteur
 Cette homepage pour WAMP a été créée par (et à la base pour) moi, n'hésitez pas à y contribuer. Vous pouvez me retrouver sur mon site personnel : http://alex-d.fr/
+
+-------
+
+## Aller plus loin
+Vous pouvez changer la navigation dans les dossiers par défaut d'apache par celle-ci : http://larsjung.de/h5ai/ qui rajoute un peu d'esthétique en rajoutant, entre autre, un arbre à gauche et un fil d'Arianne en haut.
