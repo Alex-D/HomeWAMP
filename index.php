@@ -10,20 +10,20 @@
 
 // Variable booléenne pour savoir si l'IP du visiteur est sur la liste des admins
 $admin_ip = array(
-	'127.0.0.1',
-	'::1',
+    '127.0.0.1',
+    '::1',
 );
 $admin = in_array($_SERVER['REMOTE_ADDR'], $admin_ip) ? true : false;
 $page = (isset($_GET['admin']) && $admin) ? 'admin_'.$_GET['admin'] : 'index';
 
 // Affichage du phpinfo
 if(isset($_GET['phpinfo'])){
-	if($admin)
-		phpinfo();
-	else
-		header('Location: /');
+    if($admin)
+        phpinfo();
+    else
+        header('Location: /');
 
-	exit();
+    exit();
 }
 
 
@@ -37,13 +37,13 @@ $aliasDir = '../alias/';
 
 // Liste des nom de variables pour les images ci-dessous
 $images = array(
-	'pngFolder',
-	'pngFolderGo',
-	'pngLogo',
-	'pngPlugin',
-	'pngWrench',
-	'pngEmptyFolder',
-	'favicon',
+    'pngFolder',
+    'pngFolderGo',
+    'pngLogo',
+    'pngPlugin',
+    'pngWrench',
+    'pngEmptyFolder',
+    'favicon',
 );
 
 // Images (encodée en base64)
@@ -72,12 +72,12 @@ EOFILE;
 
 // Affichage des images (rendu en base64 des image encodées ci-dessus)
 if(isset($_GET['img'])){
-	if(in_array($_GET['img'], $images)){
-		header("Content-type: image/" . ( substr($_GET['img'], 0, 3) == 'png' ? 'png' : 'x-icon' ));
-		echo base64_decode(${$_GET['img']});
-	}
+    if(in_array($_GET['img'], $images)){
+        header("Content-type: image/" . ( substr($_GET['img'], 0, 3) == 'png' ? 'png' : 'x-icon' ));
+        echo base64_decode(${$_GET['img']});
+    }
 
-	exit();
+    exit();
 }
 
 
@@ -85,70 +85,70 @@ if(isset($_GET['img'])){
 
 // Textes pour les traductions
 $langues = array(
-	// Anglais
-	'en' => array(
-		'langue'			=> 'English',
-		'autreLangue'		=> 'Version Française',
-		'autreLangueLien'	=> 'fr',
-		'titreHtml'			=> 'WAMPSERVER Homepage',
-		'serveurEnLigne'	=> 'Online',
-		'serveurHorsLigne'	=> 'Offline',
-		'versa'				=> 'Apache Version :',
-		'versp'				=> 'PHP Version :',
-		'versm'				=> 'MySQL Version :',
-		'phpExt'			=> 'Loaded Extensions : ',
-		'titrePage'			=> 'Tools',
-		'txtProjet'			=> 'Your Projects',
-		'mesProjets'		=> 'My Projects',
-		'txtNoProjet'		=> 'No projects yet.<br />To create a new one, just create a directory in \'www\'.',
-		'txtAlias'			=> 'Your Aliases',
-		'txtNoAlias'		=> 'No Alias yet.<br />To create a new one, use the WAMPSERVER menu.',
-		'faq'				=> 'http://www.en.wampserver.com/faq.php',
-		'sur'				=> 'on',
-		'creePar'			=> 'Created by',
+    // Anglais
+    'en' => array(
+        'langue'            => 'English',
+        'autreLangue'       => 'Version Française',
+        'autreLangueLien'   => 'fr',
+        'titreHtml'         => 'WAMPSERVER Homepage',
+        'serveurEnLigne'    => 'Online',
+        'serveurHorsLigne'  => 'Offline',
+        'versa'             => 'Apache Version :',
+        'versp'             => 'PHP Version :',
+        'versm'             => 'MySQL Version :',
+        'phpExt'            => 'Loaded Extensions : ',
+        'titrePage'         => 'Tools',
+        'txtProjet'         => 'Your Projects',
+        'mesProjets'        => 'My Projects',
+        'txtNoProjet'       => 'No projects yet.<br />To create a new one, just create a directory in \'www\'.',
+        'txtAlias'          => 'Your Aliases',
+        'txtNoAlias'        => 'No Alias yet.<br />To create a new one, use the WAMPSERVER menu.',
+        'faq'               => 'http://www.en.wampserver.com/faq.php',
+        'sur'               => 'on',
+        'creePar'           => 'Created by',
 
-		// Admin
-		'lesProjets'		=> 'Projects',
-		'lesAlias'			=> 'Aliases',
-		'servConf'			=> 'Server Configuration',
-		'serveur'			=> 'Server',
-		'passerEnLigne'		=> 'Put server online',
-		'passerHorsLigne'	=> 'Put Offline',
-		'phraseScreenshot'	=> 'For an overview of the project, you need an image file named "screenshot.jpg" in the project folder, recommended dimensions : 150x100px.',
-	),
+        // Admin
+        'lesProjets'        => 'Projects',
+        'lesAlias'          => 'Aliases',
+        'servConf'          => 'Server Configuration',
+        'serveur'           => 'Server',
+        'passerEnLigne'     => 'Put server online',
+        'passerHorsLigne'   => 'Put Offline',
+        'phraseScreenshot'  => 'For an overview of the project, you need an image file named "screenshot.jpg" in the project folder, recommended dimensions : 150x100px.',
+    ),
 
-	// Français
-	'fr' => array(
-		'langue'			=> 'Français',
-		'autreLangue'		=> 'English Version',
-		'autreLangueLien'	=> 'en',
-		'serveurEnLigne'	=> 'En Ligne',
-		'serveurHorsLigne'	=> 'Hors Ligne',
-		'titreHtml'			=> 'Accueil WAMPSERVER',
-		'titreConf'			=> 'Configuration Serveur',
-		'versa'				=> 'Version de Apache :',
-		'versp'				=> 'Version de PHP :',
-		'versm'				=> 'Version de MySQL :',
-		'phpExt'			=> 'Extensions Chargées : ',
-		'titrePage'			=> 'Outils',
-		'txtProjet'			=> 'Vos Projets',
-		'mesProjets'		=> 'Mes Projets',
-		'txtNoProjet'		=> 'Aucun projet.<br /> Pour en ajouter un nouveau, créez simplement un répertoire dans \'www\'.',
-		'txtAlias'			=> 'Vos Alias',
-		'txtNoAlias'		=> 'Aucun alias.<br /> Pour en ajouter un nouveau, utilisez le menu de WAMPSERVER.',
-		'faq'				=> 'http://www.wampserver.com/faq.php',
-		'sur'				=> 'sur',
-		'creePar'			=> 'Créé par',
+    // Français
+    'fr' => array(
+        'langue'            => 'Français',
+        'autreLangue'       => 'English Version',
+        'autreLangueLien'   => 'en',
+        'serveurEnLigne'    => 'En Ligne',
+        'serveurHorsLigne'  => 'Hors Ligne',
+        'titreHtml'         => 'Accueil WAMPSERVER',
+        'titreConf'         => 'Configuration Serveur',
+        'versa'             => 'Version de Apache :',
+        'versp'             => 'Version de PHP :',
+        'versm'             => 'Version de MySQL :',
+        'phpExt'            => 'Extensions Chargées : ',
+        'titrePage'         => 'Outils',
+        'txtProjet'         => 'Vos Projets',
+        'mesProjets'        => 'Mes Projets',
+        'txtNoProjet'       => 'Aucun projet.<br /> Pour en ajouter un nouveau, créez simplement un répertoire dans \'www\'.',
+        'txtAlias'          => 'Vos Alias',
+        'txtNoAlias'        => 'Aucun alias.<br /> Pour en ajouter un nouveau, utilisez le menu de WAMPSERVER.',
+        'faq'               => 'http://www.wampserver.com/faq.php',
+        'sur'               => 'sur',
+        'creePar'           => 'Créé par',
 
-		// Admin
-		'lesProjets'		=> 'Les Projets',
-		'lesAlias'			=> 'Les Alias',
-		'servConf'			=> 'Configuration Serveur',
-		'serveur'			=> 'Serveur',
-		'passerEnLigne'		=> 'Passer en Ligne',
-		'passerHorsLigne'	=> 'Passer hors Ligne',
-		'phraseScreenshot'	=> 'Pour avoir un aperçu du projet, vous devez mettre un fichier image nommé "screenshot.jpg" dans le dossier du projet, dimentions recommandées : 150x100px.',
-	)	
+        // Admin
+        'lesProjets'        => 'Les Projets',
+        'lesAlias'          => 'Les Alias',
+        'servConf'          => 'Configuration Serveur',
+        'serveur'           => 'Serveur',
+        'passerEnLigne'     => 'Passer en Ligne',
+        'passerHorsLigne'   => 'Passer hors Ligne',
+        'phraseScreenshot'  => 'Pour avoir un aperçu du projet, vous devez mettre un fichier image nommé "screenshot.jpg" dans le dossier du projet, dimentions recommandées : 150x100px.',
+    )   
 );
 
 
@@ -162,27 +162,27 @@ session_start();
 
 // Définition de la langue et des textes 
 if(isset($_SESSION['WampServerLang']) && !isset($_GET['lang'])){
-	$langue = $_SESSION['WampServerLang'];
+    $langue = $_SESSION['WampServerLang'];
 } elseif (isset ($_GET['lang'])) {
-	$langue = $_GET['lang'];
-	$_SESSION['WampServerLang'] = $langue;
+    $langue = $_GET['lang'];
+    $_SESSION['WampServerLang'] = $langue;
 } elseif (isset ($_SERVER['HTTP_ACCEPT_LANGUAGE']) AND preg_match("/^fr/", $_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
-	$langue = 'fr';
+    $langue = 'fr';
 } else {
-	$langue = 'en';
+    $langue = 'en';
 }
 
 
 // Redirection vers l'admin
 if(isset($_GET['go_admin'])){
-	header("Location: /?admin=home");
-	exit();
+    header("Location: /?admin=home");
+    exit();
 }
 
 
 // On charge le fichier de conf locale
 if (!is_file($wampConfFile))
-	die ('Unable to open WampServer\'s config file, please change path in index.php file');
+    die ('Unable to open WampServer\'s config file, please change path in index.php file');
 $fp = fopen($wampConfFile, 'r');
 $wampConfFileContents = fread ($fp, filesize($wampConfFile));
 fclose($fp);
@@ -201,21 +201,21 @@ preg_match('|status = (.*)\n|',$wampConfFileContents,$result);
 $serverStatus = str_replace('"','',$result[1]);
 
 if($serverStatus == 'offline'){
-	$serverStatusLbl = $langues[$langue]['serveurHorsLigne'];
-	$serverStatusCol = 'grey';
-	$switch_online_offline = $langues[$langue]['passerEnLigne'];
+    $serverStatusLbl = $langues[$langue]['serveurHorsLigne'];
+    $serverStatusCol = 'grey';
+    $switch_online_offline = $langues[$langue]['passerEnLigne'];
 } else {
-	$serverStatusLbl = $langues[$langue]['serveurEnLigne'];
-	$serverStatusCol = '#74c200';
-	$switch_online_offline = $langues[$langue]['passerHorsLigne'];
+    $serverStatusLbl = $langues[$langue]['serveurEnLigne'];
+    $serverStatusCol = '#74c200';
+    $switch_online_offline = $langues[$langue]['passerHorsLigne'];
 }
 
 
 // Repertoires à ignorer dans les projets
 $projectsListIgnore = array(
-	'.',
-	'..',
-	'h5ai'
+    '.',
+    '..',
+    'h5ai'
 );
 
 
@@ -228,526 +228,526 @@ $handle=opendir(".");
 $projectContents = '';
 while ($file = readdir($handle)) 
 {
-	if (is_dir($file) && !in_array($file,$projectsListIgnore)) 
-	{
-		// Si c'est un projet Symfony2, on rajoute /web/ dans l'adresse
-		$subdir = is_dir($file.'/web') ? '/web' : '';
+    if (is_dir($file) && !in_array($file,$projectsListIgnore)) 
+    {
+        // Si c'est un projet Symfony2, on rajoute /web/ dans l'adresse
+        $subdir = is_dir($file.'/web') ? '/web' : '';
 
-		$favicon_png = $file.$subdir.'/favicon.png';
-		$favicon_ico = $file.$subdir.'/favicon.ico';
-		$favicon_url = is_file($favicon_png) ? $favicon_png : (is_file($favicon_ico) ? $favicon_ico : '');
+        $favicon_png = $file.$subdir.'/favicon.png';
+        $favicon_ico = $file.$subdir.'/favicon.ico';
+        $favicon_url = is_file($favicon_png) ? $favicon_png : (is_file($favicon_ico) ? $favicon_ico : '');
 
-		$favicon = ($favicon_url != '') ? '<img class="projet-favicon" src="'.$favicon_url.'"/>' : '';
+        $favicon = ($favicon_url != '') ? '<img class="projet-favicon" src="'.$favicon_url.'"/>' : '';
 
-		$url_img = $file.'/screenshot.jpg';
-		$url_img = (is_file($url_img)) ? $url_img : 'index.php?img=pngEmptyFolder';
-		$projectContents .= '<li class="projet"><a href="'.$file.'">' .
-								$favicon.
-								'<img class="projet-screen" src="'.$url_img.'"/>'.
-								'<span>'.$file.'</span>'.
-							'</a></li>';
-	}
+        $url_img = $file.'/screenshot.jpg';
+        $url_img = (is_file($url_img)) ? $url_img : 'index.php?img=pngEmptyFolder';
+        $projectContents .= '<li class="projet"><a href="'.$file.'">' .
+                                $favicon.
+                                '<img class="projet-screen" src="'.$url_img.'"/>'.
+                                '<span>'.$file.'</span>'.
+                            '</a></li>';
+    }
 }
 closedir($handle);
 if (!isset($projectContents))
-	$projectContents = $langues[$langue]['txtNoProjet'];
+    $projectContents = $langues[$langue]['txtNoProjet'];
 
 
 if($admin && $page == 'admin_home'){
-	// Recuperation des alias
-	$aliasContents = '';
-	if (is_dir($aliasDir)) {
-		$handle=opendir($aliasDir);
-		while ($file = readdir($handle)){
-			if (is_file($aliasDir.$file) && strstr($file, '.conf')){		
-				$msg = '';
-				$aliasContents .= '<li><a href="'.str_replace('.conf','',$file).'/">'.str_replace('.conf','',$file).'</a></li>';
-			}
-		}
-		closedir($handle);
-	}
-	if (!isset($aliasContents))
-		$aliasContents = $langues[$langue]['txtNoAlias'];
+    // Recuperation des alias
+    $aliasContents = '';
+    if (is_dir($aliasDir)) {
+        $handle=opendir($aliasDir);
+        while ($file = readdir($handle)){
+            if (is_file($aliasDir.$file) && strstr($file, '.conf')){        
+                $msg = '';
+                $aliasContents .= '<li><a href="'.str_replace('.conf','',$file).'/">'.str_replace('.conf','',$file).'</a></li>';
+            }
+        }
+        closedir($handle);
+    }
+    if (!isset($aliasContents))
+        $aliasContents = $langues[$langue]['txtNoAlias'];
 
 
-	// Recuperation des extensions PHP
-	$phpExtContents = '';
-	$loaded_extensions = get_loaded_extensions();
-	foreach ($loaded_extensions as $extension)
-		$phpExtContents .= "<li>${extension}</li>";
+    // Recuperation des extensions PHP
+    $phpExtContents = '';
+    $loaded_extensions = get_loaded_extensions();
+    foreach ($loaded_extensions as $extension)
+        $phpExtContents .= "<li>${extension}</li>";
 }
 
 
 // Tout le CSS
 $css = "
 * {
-	margin: 0;
-	padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 html {
-	background: #777;
+    background: #777;
 
-	background: -webkit-linear-gradient(#777, #333) fixed;
-	background: -moz-linear-gradient(#777, #333) fixed;
-	background: -o-linear-gradient(#777, #333) fixed;
-	background: -ms-linear-gradient(#777, #333) fixed;
-	background: linear-gradient(#777, #333) fixed;
+    background: -webkit-linear-gradient(#777, #333) fixed;
+    background: -moz-linear-gradient(#777, #333) fixed;
+    background: -o-linear-gradient(#777, #333) fixed;
+    background: -ms-linear-gradient(#777, #333) fixed;
+    background: linear-gradient(#777, #333) fixed;
 }
 
 body {
-	margin: 0 5% 25px;
-	padding: 0;
-	font: 80%/1.4 'Trebuchet MS', tahoma, arial, helvetica, lucida sans, sans-serif;
+    margin: 0 5% 25px;
+    padding: 0;
+    font: 80%/1.4 'Trebuchet MS', tahoma, arial, helvetica, lucida sans, sans-serif;
 
-	-webkit-box-shadow: 0 0 10px #222;
-	-moz-box-shadow: 0 0 10px #222;
-	box-shadow: 0 0 10px #222;
-	background: #eee;
+    -webkit-box-shadow: 0 0 10px #222;
+    -moz-box-shadow: 0 0 10px #222;
+    box-shadow: 0 0 10px #222;
+    background: #eee;
 
-	background: -webkit-linear-gradient(#eee, #fff);
-	background: -moz-linear-gradient(#eee, #fff);
-	background: -o-linear-gradient(#eee, #fff);
-	background: -ms-linear-gradient(#eee, #fff);
-	background: linear-gradient(#eee, #fff);
-	position: relative;
-	border-bottom-left-radius: 15px;
-	border-bottom-right-radius: 15px;
+    background: -webkit-linear-gradient(#eee, #fff);
+    background: -moz-linear-gradient(#eee, #fff);
+    background: -o-linear-gradient(#eee, #fff);
+    background: -ms-linear-gradient(#eee, #fff);
+    background: linear-gradient(#eee, #fff);
+    position: relative;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
 }
 
 #head {
-	margin: 0;
-	padding: 1em 0 0;
-	border-bottom: 1px solid #ddd;
-	height: 90px;
-	width: 100%;
-	background: #f5f5f5;
+    margin: 0;
+    padding: 1em 0 0;
+    border-bottom: 1px solid #ddd;
+    height: 90px;
+    width: 100%;
+    background: #f5f5f5;
 
-	background: -webkit-linear-gradient(#fff, #eee);
-	background: -moz-linear-gradient(#fff, #eee);
-	background: -o-linear-gradient(#fff, #eee);
-	background: -ms-linear-gradient(#fff, #eee);
-	background: linear-gradient(#fff, #eee);
+    background: -webkit-linear-gradient(#fff, #eee);
+    background: -moz-linear-gradient(#fff, #eee);
+    background: -o-linear-gradient(#fff, #eee);
+    background: -ms-linear-gradient(#fff, #eee);
+    background: linear-gradient(#fff, #eee);
 }
 
 #head > .logo {
-	display: block;
-	height: 100%;
-	width: 280px;
-	margin: 0 0 0 3em;
-	text-decoration: none;
-	background: url(index.php?img=pngLogo) 0 0 no-repeat;
+    display: block;
+    height: 100%;
+    width: 280px;
+    margin: 0 0 0 3em;
+    text-decoration: none;
+    background: url(index.php?img=pngLogo) 0 0 no-repeat;
 }
 
 #server_status {
-	position: absolute;
-	top: 67px;
-	left: 205px;
-	font-weight: bold;
-	color: #777;
+    position: absolute;
+    top: 67px;
+    left: 205px;
+    font-weight: bold;
+    color: #777;
 }
 
 #onglets {
-	position: absolute;
-	top: 0;
-	right: 30px;
+    position: absolute;
+    top: 0;
+    right: 30px;
 }
 #onglets li {
-	margin-left: 10px;
-	float: left;
+    margin-left: 10px;
+    float: left;
 }
 #onglets li.empty {
-	background: none;
-	margin-right: 30px;
-	height: 26px;
+    background: none;
+    margin-right: 30px;
+    height: 26px;
 }
 
 #onglets a {
-	padding: 4px 10px;
-	display: block;
+    padding: 4px 10px;
+    display: block;
 
-	-ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=60)';
-	filter: alpha(opacity=60);
-	opacity: 0.6;
-	background: #777;
-	background: -webkit-linear-gradient(#777, #444);
-	background: -moz-linear-gradient(#777, #444);
-	background: -o-linear-gradient(#777, #444);
-	background: -ms-linear-gradient(#777, #444);
-	background: linear-gradient(#777, #444);
-	color: #DDD;
-	border-bottom-left-radius: 7px;
-	border-bottom-right-radius: 7px;
+    -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=60)';
+    filter: alpha(opacity=60);
+    opacity: 0.6;
+    background: #777;
+    background: -webkit-linear-gradient(#777, #444);
+    background: -moz-linear-gradient(#777, #444);
+    background: -o-linear-gradient(#777, #444);
+    background: -ms-linear-gradient(#777, #444);
+    background: linear-gradient(#777, #444);
+    color: #DDD;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
 
-	transition: all .1s;
+    transition: all .1s;
 }
 
 #onglets a:hover {
-	color: #EEE;
-	text-decoration: none;
-	-ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=100)';
-	filter: alpha(opacity=100);
-	opacity: 1;
-	padding-top: 10px;
+    color: #EEE;
+    text-decoration: none;
+    -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=100)';
+    filter: alpha(opacity=100);
+    opacity: 1;
+    padding-top: 10px;
 }
 
 #admin_link {
-	right: 40px;
+    right: 40px;
 }
 
 #langues {
-	right: 160px;
+    right: 160px;
 }
 
 .utility {
-	position: absolute;
-	right: 4em;
-	top: 85px;
-	font-size: 0.85em;
+    position: absolute;
+    right: 4em;
+    top: 85px;
+    font-size: 0.85em;
 }
 
 .utility li {
-	display: inline;
-	color: #777;
+    display: inline;
+    color: #777;
 }
 
 h2 {
-	margin: 0.8em 0 0 0;
+    margin: 0.8em 0 0 0;
 }
 
 ul {
-	list-style: none;
-	margin: 0;
-	padding: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 #head ul li,dl ul li,#foot li {
-	list-style: none;
-	display: inline;
-	margin: 0;
-	padding: 0 0.2em;
+    list-style: none;
+    display: inline;
+    margin: 0;
+    padding: 0 0.2em;
 }
 
 ul.aliases,ul.projects,ul.tools {
-	list-style: none;
-	line-height: 24px;
+    list-style: none;
+    line-height: 24px;
 }
 
 ul.tools a {
-	background: url(index.php?img=pngWrench) 0 100% no-repeat;
-	padding-left: 22px;
+    background: url(index.php?img=pngWrench) 0 100% no-repeat;
+    padding-left: 22px;
 }
 
 ul.aliases a {
-	background: url(index.php?img=pngFolderGo) 0 100% no-repeat;
-	padding-left: 22px;
+    background: url(index.php?img=pngFolderGo) 0 100% no-repeat;
+    padding-left: 22px;
 }
 
 dl {
-	margin: 0;
-	padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 dt {
-	font-weight: bold;
-	text-align: right;
-	width: 11.5em;
-	clear: both;
+    font-weight: bold;
+    text-align: right;
+    width: 11.5em;
+    clear: both;
 }
 
 dd {
-	margin: -1.35em 0 0 12em;
-	padding-bottom: 0.4em;
-	overflow: auto;
+    margin: -1.35em 0 0 12em;
+    padding-bottom: 0.4em;
+    overflow: auto;
 }
 
 dd ul li {
-	float: left;
-	display: block;
-	width: 16.5%;
-	margin: 0;
-	padding: 0 0 0 20px;
-	background: url(index.php?img=pngPlugin) 2px 50% no-repeat;
-	line-height: 1.6;
+    float: left;
+    display: block;
+    width: 16.5%;
+    margin: 0;
+    padding: 0 0 0 20px;
+    background: url(index.php?img=pngPlugin) 2px 50% no-repeat;
+    line-height: 1.6;
 }
 
 a {
-	color: #024378;
-	text-decoration: none;
-	transition: all .1s;
+    color: #024378;
+    text-decoration: none;
+    transition: all .1s;
 }
 
 a:hover {
-	color: #04569A;
-	text-decoration: underline;
+    color: #04569A;
+    text-decoration: underline;
 }
 
 #foot {
-	text-align: center;
-	margin: 2em 0 0;
-	border-top: 1px solid #eee;
-	padding: 1em 0;
-	font-size: 0.85em;
-	width: 100%;
-	background: #e6e6e6;
-	background: -webkit-linear-gradient(#fff, #ddd);
-	background: -moz-linear-gradient(#fff, #ddd);
-	background: -o-linear-gradient(#fff, #ddd);
-	background: -ms-linear-gradient(#fff, #ddd);
-	background: linear-gradient(#fff, #ddd);
-	border-bottom-left-radius: 15px;
-	border-bottom-right-radius: 15px;
-	clear: both;
-	color: #BBB;
+    text-align: center;
+    margin: 2em 0 0;
+    border-top: 1px solid #eee;
+    padding: 1em 0;
+    font-size: 0.85em;
+    width: 100%;
+    background: #e6e6e6;
+    background: -webkit-linear-gradient(#fff, #ddd);
+    background: -moz-linear-gradient(#fff, #ddd);
+    background: -o-linear-gradient(#fff, #ddd);
+    background: -ms-linear-gradient(#fff, #ddd);
+    background: linear-gradient(#fff, #ddd);
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    clear: both;
+    color: #BBB;
 }
 
 #foot a {
-	color: #AAA;
+    color: #AAA;
 }
 
 #foot a:hover {
-	color: #333;
-	text-decoration: none;
+    color: #333;
+    text-decoration: none;
 }
 
 .projet {
-	display: block;
-	float: left;
-	margin: 1em 3.5%;
-	width: 150px;
-	height: 110px;
-	position: relative;
-	text-align: center;
-	border: 1px solid #FFF; // #777;
-	-ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=70)';
-	filter: alpha(opacity=70);
-	opacity: 0.7;
-	overflow: hidden;
+    display: block;
+    float: left;
+    margin: 1em 3.5%;
+    width: 150px;
+    height: 110px;
+    position: relative;
+    text-align: center;
+    border: 1px solid #FFF; // #777;
+    -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=70)';
+    filter: alpha(opacity=70);
+    opacity: 0.7;
+    overflow: hidden;
 
-	-webkit-border-radius: 7px;
-	-moz-border-radius: 7px;
-	border-radius: 7px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
 
-	-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, .1);
-	-moz-box-shadow: 0 0 10px rgba(0, 0, 0, .1);
-	box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    -moz-box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
 
-	-webkit-transition: all 0.3s ease;
-	-moz-transition: all 0.3s ease;
-	-o-transition: all 0.3s ease;
-	-ms-transition: all 0.3s ease;
-	transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }
 .bloc_in .projet {
-	margin: 1em 2.3%;
+    margin: 1em 2.3%;
 }
 
 .projet:hover,.projet:focus {
-	-ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=100)';
-	filter: alpha(opacity=100);
-	opacity: 1;
+    -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=100)';
+    filter: alpha(opacity=100);
+    opacity: 1;
 
-	-webkit-box-shadow: 1px 1px 10px rgba(0, 0, 0, .3);
-	-moz-box-shadow: 1px 1px 10px rgba(0, 0, 0, .3);
-	box-shadow: 1px 1px 10px rgba(0, 0, 0, .3);
+    -webkit-box-shadow: 1px 1px 10px rgba(0, 0, 0, .3);
+    -moz-box-shadow: 1px 1px 10px rgba(0, 0, 0, .3);
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, .3);
 
-	-webkit-transform: rotate(3deg) scale(1.2, 1.2);
-	-moz-transform: rotate(3deg) scale(1.2, 1.2);
-	-o-transform: rotate(3deg) scale(1.2, 1.2);
-	-ms-transform: rotate(3deg) scale(1.2, 1.2);
-	transform: rotate(3deg) scale(1.2, 1.2);
+    -webkit-transform: rotate(3deg) scale(1.2, 1.2);
+    -moz-transform: rotate(3deg) scale(1.2, 1.2);
+    -o-transform: rotate(3deg) scale(1.2, 1.2);
+    -ms-transform: rotate(3deg) scale(1.2, 1.2);
+    transform: rotate(3deg) scale(1.2, 1.2);
 }
 
 .projet a {
-	display: block;
-	width: 100%;
-	height: 100%;
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 
 .projet .projet-screen {
-	height: 100%;
-	border: 0;
+    height: 100%;
+    border: 0;
 }
 
 .projet .projet-favicon {
-	height: 16px;
-	width: 16px;
-	position: absolute;
-	top: 0;
-	left: 0;
-	padding: 4px;
-	background: rgba(255, 255, 255, .7);
-	border: 0;
-	border-radius: 0 0 4px;
+    height: 16px;
+    width: 16px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 4px;
+    background: rgba(255, 255, 255, .7);
+    border: 0;
+    border-radius: 0 0 4px;
 }
 
 .projet span {
-	position: absolute;
-	display: block;
-	width: 150px;
-	height: 22px;
-	line-height: 22px;
-	bottom: 0;
-	left: 0;
-	background: #eee;
+    position: absolute;
+    display: block;
+    width: 150px;
+    height: 22px;
+    line-height: 22px;
+    bottom: 0;
+    left: 0;
+    background: #eee;
 
-	-ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=80)';
-	filter: alpha(opacity=80);
-	opacity: 0.8;
+    -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=80)';
+    filter: alpha(opacity=80);
+    opacity: 0.8;
 
-	border-radius: 0 0 6px 6px;
+    border-radius: 0 0 6px 6px;
 
-	-webkit-transition: all 0.3s ease;
-	-moz-transition: all 0.3s ease;
-	-o-transition: all 0.3s ease;
-	-ms-transition: all 0.3s ease;
-	transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .projet:hover span,.projet:focus span {
-	-ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=90)';
-	filter: alpha(opacity=90);
-	opacity: 0.9;
-	-webkit-transform: rotate(-3deg);
-	bottom: -4px;
-	height: 30px;
+    -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=90)';
+    filter: alpha(opacity=90);
+    opacity: 0.9;
+    -webkit-transform: rotate(-3deg);
+    bottom: -4px;
+    height: 30px;
 }
 
 .clear {
-	visibility: hidden;
-	width: 100%;
-	clear: both;
+    visibility: hidden;
+    width: 100%;
+    clear: both;
 }
 
 #sidebar {
-	position: fixed;
-	top: 104px;
-	width: 160px;
-	margin: 2em 0 0;proj5em;
-	background: #666;
+    position: fixed;
+    top: 104px;
+    width: 160px;
+    margin: 2em 0 0;proj5em;
+    background: #666;
 
-	background: -webkit-linear-gradient(#999, #666);
-	background: -moz-linear-gradient(#999, #666);
-	background: -o-linear-gradient(#999, #666);
-	background: -ms-linear-gradient(#999, #666);
-	background: linear-gradient(#999, #666);
-	color: #FFF;
-	border-top-right-radius: 7px;
+    background: -webkit-linear-gradient(#999, #666);
+    background: -moz-linear-gradient(#999, #666);
+    background: -o-linear-gradient(#999, #666);
+    background: -ms-linear-gradient(#999, #666);
+    background: linear-gradient(#999, #666);
+    color: #FFF;
+    border-top-right-radius: 7px;
 }
 
 #sidebar h2 {
-	margin: 0;
-	padding: 4px 0 4px 1.5em;
-	background: #666;
+    margin: 0;
+    padding: 4px 0 4px 1.5em;
+    background: #666;
 
-	background: -webkit-linear-gradient(#999, #666);
-	background: -moz-linear-gradient(#999, #666);
-	background: -o-linear-gradient(#999, #666);
-	background: -ms-linear-gradient(#999, #666);
-	background: linear-gradient(#999, #666);
-	color: #FFF;
-	border-top-right-radius: 7px;
+    background: -webkit-linear-gradient(#999, #666);
+    background: -moz-linear-gradient(#999, #666);
+    background: -o-linear-gradient(#999, #666);
+    background: -ms-linear-gradient(#999, #666);
+    background: linear-gradient(#999, #666);
+    color: #FFF;
+    border-top-right-radius: 7px;
 }
 
 #sidebar ul li.empty {
-	height: 1px;
-	width: 160px;
-	padding: 0;
-	margin: 0;
-	display: block;
-	background: #555;
+    height: 1px;
+    width: 160px;
+    padding: 0;
+    margin: 0;
+    display: block;
+    background: #555;
 }
 
 #sidebar ul li a {
-	padding: 5px 0 5px 1.2em;
-	font-weight: normal;
-	color: #EEE;
-	display: block;
-	height: 18px;
-	width: 145px;
-	line-height: 18px;
-	text-decoration: none;
-	border-left: 0 solid #DDD;
+    padding: 5px 0 5px 1.2em;
+    font-weight: normal;
+    color: #EEE;
+    display: block;
+    height: 18px;
+    width: 145px;
+    line-height: 18px;
+    text-decoration: none;
+    border-left: 0 solid #DDD;
 }
 
 #sidebar ul li a:hover {
-	background: #777;
+    background: #777;
 
-	background: -webkit-linear-gradient(#AAA, #888);
-	background: -moz-linear-gradient(#AAA, #888);
-	background: -o-linear-gradient(#AAA, #888);
-	background: -ms-linear-gradient(#AAA, #888);
-	background: linear-gradient(#AAA, #888);
-	border-left: 5px solid #DDD;
-	width: 140px;
+    background: -webkit-linear-gradient(#AAA, #888);
+    background: -moz-linear-gradient(#AAA, #888);
+    background: -o-linear-gradient(#AAA, #888);
+    background: -ms-linear-gradient(#AAA, #888);
+    background: linear-gradient(#AAA, #888);
+    border-left: 5px solid #DDD;
+    width: 140px;
 }
 
 #sidebar ul li:last a:hover {
-	border-bottom-right-radius: 7px;
+    border-bottom-right-radius: 7px;
 }
 
 .bloc {
-	margin: 2em 0 2em 180px;
-	padding: 0 0 1em;
-	background: #E6E6E6;
+    margin: 2em 0 2em 180px;
+    padding: 0 0 1em;
+    background: #E6E6E6;
 
-	background: -webkit-linear-gradient(#eee, #ddd);
-	background: -moz-linear-gradient(#eee, #ddd);
-	background: -o-linear-gradient(#eee, #ddd);
-	background: -ms-linear-gradient(#eee, #ddd);
-	background: linear-gradient(#eee, #ddd);
-	border-top-left-radius: 7px;
-	border-bottom-left-radius: 7px;
-	border: 1px solid #ccc;
-	border-right: none;
+    background: -webkit-linear-gradient(#eee, #ddd);
+    background: -moz-linear-gradient(#eee, #ddd);
+    background: -o-linear-gradient(#eee, #ddd);
+    background: -ms-linear-gradient(#eee, #ddd);
+    background: linear-gradient(#eee, #ddd);
+    border-top-left-radius: 7px;
+    border-bottom-left-radius: 7px;
+    border: 1px solid #ccc;
+    border-right: none;
 }
 
 .bloc h2 {
-	margin: 0;
-	padding: 4px 0 4px 1.5em;
-	background: #ddd;
-	background: -webkit-linear-gradient(#eee, #ddd);
-	background: -moz-linear-gradient(#eee, #ddd);
-	background: -o-linear-gradient(#eee, #ddd);
-	background: -ms-linear-gradient(#eee, #ddd);
-	background: linear-gradient(#eee, #ddd);
-	color: #555;
-	border-top-left-radius: 7px;
-	border-bottom: 1px solid #ccc;
+    margin: 0;
+    padding: 4px 0 4px 1.5em;
+    background: #ddd;
+    background: -webkit-linear-gradient(#eee, #ddd);
+    background: -moz-linear-gradient(#eee, #ddd);
+    background: -o-linear-gradient(#eee, #ddd);
+    background: -ms-linear-gradient(#eee, #ddd);
+    background: linear-gradient(#eee, #ddd);
+    color: #555;
+    border-top-left-radius: 7px;
+    border-bottom: 1px solid #ccc;
 }
 
 .bloc .bloc_in {
-	margin: 2em 1em;
-	padding: 0;
+    margin: 2em 1em;
+    padding: 0;
 }
 
 .no_admin .bloc {
-	margin-left: 3em;
+    margin-left: 3em;
 }
 
 #btn_switch_status {
-	font-size: 14px;
-	font-weight: normal;
-	margin: 1em 0 0;
+    font-size: 14px;
+    font-weight: normal;
+    margin: 1em 0 0;
 }
 
 #btn_switch_status a {
-	display: inline-block;
-	width: 44%;
-	margin: 0 3%;
-	padding: 3px 0;
-	float: left;
-	color: #555;
-	background: #CCC;
+    display: inline-block;
+    width: 44%;
+    margin: 0 3%;
+    padding: 3px 0;
+    float: left;
+    color: #555;
+    background: #CCC;
 
-	-webkit-border-radius: 7px;
-	-moz-border-radius: 7px;
-	border-radius: 7px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
 }
 
 #btn_switch_status a:hover {
-	background: #FFF;
-	text-decoration: none;
+    background: #FFF;
+    text-decoration: none;
 }
 ";
 
@@ -756,206 +756,206 @@ $admin_link = ($admin) ? '<li id="admin_link"><a href="?admin=home">Administrati
 
 // Gestion des pages d'administration
 if($page != ''){
-	$sidebar = '<div id="sidebar">
-					<h2>Admin</h2>
-					<ul>
-						<li><a href="#conf_serv">'.$langues[$langue]["servConf"].'</a></li>
-						<li class="empty"></li>
-						<li><a href="#vos_projets">'.$langues[$langue]["lesProjets"].'</a></li>
-						<li><a href="#alias">'.$langues[$langue]["lesAlias"].'</a></li>
-					</ul>
-				</div>';
+    $sidebar = '<div id="sidebar">
+                    <h2>Admin</h2>
+                    <ul>
+                        <li><a href="#conf_serv">'.$langues[$langue]["servConf"].'</a></li>
+                        <li class="empty"></li>
+                        <li><a href="#vos_projets">'.$langues[$langue]["lesProjets"].'</a></li>
+                        <li><a href="#alias">'.$langues[$langue]["lesAlias"].'</a></li>
+                    </ul>
+                </div>';
 
-	$admin_links = '<li><a href="/phpmyadmin/">PhpMyAdmin</a></li>
-					<li><a href="?phpinfo=1">phpinfo()</a></li>
-					<li class="empty"></li>';
+    $admin_links = '<li><a href="/phpmyadmin/">PhpMyAdmin</a></li>
+                    <li><a href="?phpinfo=1">phpinfo()</a></li>
+                    <li class="empty"></li>';
 }
 switch($page){
-	case "admin_home":
-		// ADMINISTRATION - HOME
+    case "admin_home":
+        // ADMINISTRATION - HOME
 
-		header("Content-type: text/html");
-		$pageContents = <<< EOPAGE
-		<!DOCTYPE html>
+        header("Content-type: text/html");
+        $pageContents = <<< EOPAGE
+        <!DOCTYPE html>
 
-		<html lang="{$langue}" xml:lang="{$langue}">
-		<head>
-			<title>Admin WAMPSERVER</title>
-			<meta charset="utf-8">
+        <html lang="{$langue}" xml:lang="{$langue}">
+        <head>
+            <title>Admin WAMPSERVER</title>
+            <meta charset="utf-8">
 
-			<style type="text/css">
-			${css}
-			</style>
+            <style type="text/css">
+            ${css}
+            </style>
 
-			<link rel="shortcut icon" href="index.php?img=favicon" type="image/ico" />
-		</head>
+            <link rel="shortcut icon" href="index.php?img=favicon" type="image/ico" />
+        </head>
 
-		<body>
-			<div id="head">
-				<a href="/" class="logo">
-					<span id="server_status">${serverStatusLbl} | Admin</span>
-				</a>
-			</div>
+        <body>
+            <div id="head">
+                <a href="/" class="logo">
+                    <span id="server_status">${serverStatusLbl} | Admin</span>
+                </a>
+            </div>
 
-			<ul id="onglets">
-				${admin_links}
-				<li id="langues"><a href="?lang={$langues[$langue]['autreLangueLien']}&go_admin=1">{$langues[$langue]['autreLangue']}</a></li>
-				${admin_link}
-			</ul>
+            <ul id="onglets">
+                ${admin_links}
+                <li id="langues"><a href="?lang={$langues[$langue]['autreLangueLien']}&go_admin=1">{$langues[$langue]['autreLangue']}</a></li>
+                ${admin_link}
+            </ul>
 
-			<ul class="utility">
-				<li><a href="https://github.com/Alex-D/HomeWAMP">HomeWAMP {$langues[$langue]['sur']} Github</a> - </li>
-				<li><a href="http://alex-d.fr/">{$langues[$langue]['creePar']} Alex-D</a> - </li>
-				<li>WAMP v${wampserverVersion}</li>
-			</ul>
+            <ul class="utility">
+                <li><a href="https://github.com/Alex-D/HomeWAMP">HomeWAMP {$langues[$langue]['sur']} Github</a> - </li>
+                <li><a href="http://alex-d.fr/">{$langues[$langue]['creePar']} Alex-D</a> - </li>
+                <li>WAMP v${wampserverVersion}</li>
+            </ul>
 
-			${sidebar}
+            ${sidebar}
 
-			<div id="conf_serv" class="bloc">
-				<h2> {$langues[$langue]['servConf']} </h2>
-				<div class="bloc_in">
-					<div style="margin: 0 auto; padding: 0 1.5em; color: ${serverStatusCol}; font-size: 21px; font-weight: bold; width: 350px; text-align: center;">
-						<span style="display: inline-block; background: ${serverStatusCol}; height: 16px; width: 16px; border-radius: 20px;"> </span>
-						<span style="display: inline-block;">{$langues[$langue]['serveur']} ${serverStatusLbl}</span>
+            <div id="conf_serv" class="bloc">
+                <h2> {$langues[$langue]['servConf']} </h2>
+                <div class="bloc_in">
+                    <div style="margin: 0 auto; padding: 0 1.5em; color: ${serverStatusCol}; font-size: 21px; font-weight: bold; width: 350px; text-align: center;">
+                        <span style="display: inline-block; background: ${serverStatusCol}; height: 16px; width: 16px; border-radius: 20px;"> </span>
+                        <span style="display: inline-block;">{$langues[$langue]['serveur']} ${serverStatusLbl}</span>
 
-						<div id="btn_switch_status">
-							<a href="?admin=online_offline" style="float: none; margin: 0 3em 1em;">
-								${switch_online_offline}
-							</a>
-							<hr class="clear" />
-						</div>
-					</div>
+                        <div id="btn_switch_status">
+                            <a href="?admin=online_offline" style="float: none; margin: 0 3em 1em;">
+                                ${switch_online_offline}
+                            </a>
+                            <hr class="clear" />
+                        </div>
+                    </div>
 
-					<div class="content">
-						<dl>
-						<dt>{$langues[$langue]['versa']}</dt>
-						<dd>${apacheVersion}  </dd>
-						<dt>{$langues[$langue]['versm']}</dt>
-						<dd>${mysqlVersion}  </dd>
-						<dt>{$langues[$langue]['versp']}</dt>
-						<dd>${phpVersion}  </dd>
-						<dt>{$langues[$langue]['phpExt']}</dt> 
-						<dd>
-							<ul>
-								${phpExtContents}
-							</ul>
-						</dd>
-						</dl>
-					</div>
-				</div>
-			</div>
+                    <div class="content">
+                        <dl>
+                        <dt>{$langues[$langue]['versa']}</dt>
+                        <dd>${apacheVersion}  </dd>
+                        <dt>{$langues[$langue]['versm']}</dt>
+                        <dd>${mysqlVersion}  </dd>
+                        <dt>{$langues[$langue]['versp']}</dt>
+                        <dd>${phpVersion}  </dd>
+                        <dt>{$langues[$langue]['phpExt']}</dt> 
+                        <dd>
+                            <ul>
+                                ${phpExtContents}
+                            </ul>
+                        </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
 
-			<div id="vos_projets" class="bloc">
-				<h2>{$langues[$langue]['txtProjet']}</h2>
-				<div class="bloc_in">
-					<p style="min-height: 36px; background: #e5ffa5; color: #4f8108; border-radius: 7px; padding: 4px 7px 4px 50px; 
-								position: relative; border: 1px solid #74c200;margin: 0 2.3%;">
-						<span style="display: block; height: 30px; width: 30px; background: #74c200; color: #e5ffa5; border-radius: 30px;
-						text-align: center; font-size: 18px; font-weight: bold; line-height: 30px; position: absolute; top: 7px; left: 7px;
-						font-family: 'Lucida Bright';">i</span>
-						{$langues[$langue]['phraseScreenshot']}
-					</p>
-					<br />
-					${projectContents}
-					<hr class="clear" />
-				</div>
-			</div>
+            <div id="vos_projets" class="bloc">
+                <h2>{$langues[$langue]['txtProjet']}</h2>
+                <div class="bloc_in">
+                    <p style="min-height: 36px; background: #e5ffa5; color: #4f8108; border-radius: 7px; padding: 4px 7px 4px 50px; 
+                                position: relative; border: 1px solid #74c200;margin: 0 2.3%;">
+                        <span style="display: block; height: 30px; width: 30px; background: #74c200; color: #e5ffa5; border-radius: 30px;
+                        text-align: center; font-size: 18px; font-weight: bold; line-height: 30px; position: absolute; top: 7px; left: 7px;
+                        font-family: 'Lucida Bright';">i</span>
+                        {$langues[$langue]['phraseScreenshot']}
+                    </p>
+                    <br />
+                    ${projectContents}
+                    <hr class="clear" />
+                </div>
+            </div>
 
-			<div id="alias" class="bloc">
-				<h2>{$langues[$langue]['txtAlias']}</h2>
-				<div class="bloc_in">
-					<ul class="aliases">
-						${aliasContents}
-					</ul>
-				</div>
-			</div>
+            <div id="alias" class="bloc">
+                <h2>{$langues[$langue]['txtAlias']}</h2>
+                <div class="bloc_in">
+                    <ul class="aliases">
+                        ${aliasContents}
+                    </ul>
+                </div>
+            </div>
 
-			<ul id="foot">
-				<li><a href="http://www.wampserver.com">WampServer</a></li> -
-				<li><a href="http://www.wampserver.com/en/donations.php">Donate</a></li> -
-				<li><a href="http://www.anaska.com">Anaska</a></li> -
-				<li><a href="http://alex-d.fr/">Alex-D</a></li>
-			</ul>
-		</body>
-		</html>
+            <ul id="foot">
+                <li><a href="http://www.wampserver.com">WampServer</a></li> -
+                <li><a href="http://www.wampserver.com/en/donations.php">Donate</a></li> -
+                <li><a href="http://www.anaska.com">Anaska</a></li> -
+                <li><a href="http://alex-d.fr/">Alex-D</a></li>
+            </ul>
+        </body>
+        </html>
 EOPAGE;
-		break;
+        break;
 
-	case 'admin_online_offline':
-		$_SERVER['argv'][1] = ($serverStatus == "offline") ? "on" : "off";
-		require("../scripts/onlineOffline.php");
+    case 'admin_online_offline':
+        $_SERVER['argv'][1] = ($serverStatus == "offline") ? "on" : "off";
+        require("../scripts/onlineOffline.php");
 
-		header('Location: /?admin=refresh');
-		exit();
-		break;
+        header('Location: /?admin=refresh');
+        exit();
+        break;
 
-	case 'admin_refresh':
-		require("../scripts/refresh.php");
+    case 'admin_refresh':
+        require("../scripts/refresh.php");
 
-		header('Location: /?admin=home');
-		exit();
-		break;
+        header('Location: /?admin=home');
+        exit();
+        break;
 
-	case 'index':
-		$pageContents = <<< EOPAGE
-		<!DOCTYPE html>
+    case 'index':
+        $pageContents = <<< EOPAGE
+        <!DOCTYPE html>
 
-		<html lang="{$langue}" xml:lang="{$langue}">
-		<head>
-			<title>{$langues[$langue]['titreHtml']}</title>
-			<meta charset="utf-8">
+        <html lang="{$langue}" xml:lang="{$langue}">
+        <head>
+            <title>{$langues[$langue]['titreHtml']}</title>
+            <meta charset="utf-8">
 
-			<style type="text/css">
-			${css}
-			</style>
+            <style type="text/css">
+            ${css}
+            </style>
 
-			<link rel="shortcut icon" href="index.php?img=favicon" type="image/ico" />
-		</head>
+            <link rel="shortcut icon" href="index.php?img=favicon" type="image/ico" />
+        </head>
 
-		<body class="no_admin">
-			<div id="head">
-				<span class="logo"></span>
-				<span id="server_status">${serverStatusLbl}</span>
-			</div>
+        <body class="no_admin">
+            <div id="head">
+                <span class="logo"></span>
+                <span id="server_status">${serverStatusLbl}</span>
+            </div>
 
-			<ul id="onglets">
-				${admin_links}
-				<li id="langues"><a href="?lang={$langues[$langue]['autreLangueLien']}">{$langues[$langue]['autreLangue']}</a></li>
-				${admin_link}
-			</ul>
+            <ul id="onglets">
+                ${admin_links}
+                <li id="langues"><a href="?lang={$langues[$langue]['autreLangueLien']}">{$langues[$langue]['autreLangue']}</a></li>
+                ${admin_link}
+            </ul>
 
-			<ul class="utility">
-				<li><a href="https://github.com/Alex-D/HomeWAMP">HomeWAMP {$langues[$langue]['sur']} Github</a> - </li>
-				<li><a href="http://alex-d.fr/">{$langues[$langue]['creePar']} Alex-D</a> - </li>
-				<li>WAMP v${wampserverVersion}</li>
-			</ul>
+            <ul class="utility">
+                <li><a href="https://github.com/Alex-D/HomeWAMP">HomeWAMP {$langues[$langue]['sur']} Github</a> - </li>
+                <li><a href="http://alex-d.fr/">{$langues[$langue]['creePar']} Alex-D</a> - </li>
+                <li>WAMP v${wampserverVersion}</li>
+            </ul>
 
-			<div id="vos_projets" class="bloc">
-				<h2>{$langues[$langue]['mesProjets']}</h2>
-				<br />
-				<ul class="projects">
-				${projectContents}
-				</ul>
-				<hr class="clear" />
-			</div>
+            <div id="vos_projets" class="bloc">
+                <h2>{$langues[$langue]['mesProjets']}</h2>
+                <br />
+                <ul class="projects">
+                ${projectContents}
+                </ul>
+                <hr class="clear" />
+            </div>
 
-			<hr class="clear" />
+            <hr class="clear" />
 
-			<ul id="foot">
-				<li><a href="http://www.wampserver.com">WampServer</a></li> -
-				<li><a href="http://www.wampserver.com/en/donations.php">Donate</a></li> -
-				<li><a href="http://www.anaska.com">Anaska</a></li> -
-				<li><a href="http://alex-d.fr/">Alex-D</a></li>
-			</ul>
-		</body>
-		</html>
+            <ul id="foot">
+                <li><a href="http://www.wampserver.com">WampServer</a></li> -
+                <li><a href="http://www.wampserver.com/en/donations.php">Donate</a></li> -
+                <li><a href="http://www.anaska.com">Anaska</a></li> -
+                <li><a href="http://alex-d.fr/">Alex-D</a></li>
+            </ul>
+        </body>
+        </html>
 EOPAGE;
-		break;
+        break;
 
-	default:
-		header('Location: /');
-		exit();
-		break;
+    default:
+        header('Location: /');
+        exit();
+        break;
 }
 
 echo $pageContents;
