@@ -5,7 +5,7 @@ HomeWAMP
 HomeWAMP est une home de substitution à celle d'origine. Un peu plus jolie et plus complète, entre autres. Un atout par rapport à d'autres pages que vous pourrez trouver : elle reste "one-file", telle l'`index.php` d'origine.
 
 Au final, ça ressemble à ça :
-![Screenshot de HomeWAMP](https://raw.github.com/OmarBerrayti/Win8Wamp/master/screenshot.jpg "Screenshot de HomeWAMP")
+![Screenshot de HomeWAMP](https://raw.github.com/Alex-D/HomeWAMP/master/screenshot.jpg "Screenshot de HomeWAMP")
 
 ## Installation
 1. Renommez votre `index.php` en `index.old.php`, de façon à avoir un backup si beosin

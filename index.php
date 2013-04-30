@@ -1,26 +1,20 @@
 <?php
-// Page crÈÈe par Shepard [Fabian Pijcke] <Shepard8|at|laposte|point|net>
+// Page cr√©√©e par Shepard [Fabian Pijcke] <Shepard8|at|laposte|point|net>
 // Arno Esterhuizen <arno.esterhuizen|at|gmail|point|com>
 // et Romain Bourdon <romain|at|anaska|point|com>
 // 
-// Nouveau design et amÈliorations par Alexandre Demode <contact|at|alex-d|point|com>
+// Nouveau design et am√©liorations par Alexandre Demode <contact|at|alex-d|point|com>
 // 
-// IcÙnes par Mark James <http://www.famfamfam.com/lab/icons/silk/>
+// Ic√¥nes par Mark James <http://www.famfamfam.com/lab/icons/silk/>
 
 
-// Variable boolÈenne pour savoir si l'IP du visiteur est sur la liste des admins
+// Variable bool√©enne pour savoir si l'IP du visiteur est sur la liste des admins
 $admin_ip = array(
 	'127.0.0.1',
 	'::1',
 );
 $admin = in_array($_SERVER['REMOTE_ADDR'], $admin_ip) ? true : false;
 $page = (isset($_GET['admin']) && $admin) ? 'admin_'.$_GET['admin'] : 'index';
-
-// Redirection vers l'admin
-if(isset($_GET['go_admin'])){
-	header("Location: /?admin=home");
-	exit();
-}
 
 // Affichage du phpinfo
 if(isset($_GET['phpinfo'])){
@@ -52,7 +46,7 @@ $images = array(
 	'favicon',
 );
 
-// Images (encodÈe en base64)
+// Images (encod√©e en base64)
 $pngFolder = <<< EOFILE
 iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAA3NCSVQICAjb4U/gAAABhlBMVEX//v7//v3///7//fr//fj+/v3//fb+/fT+/Pf//PX+/Pb+/PP+/PL+/PH+/PD+++/+++7++u/9+vL9+vH79+r79+n79uj89tj89Nf889D88sj78sz78sr58N3u7u7u7ev777j67bL67Kv46sHt6uP26cns6d356aP56aD56Jv45pT45pP45ZD45I324av344r344T14J734oT34YD13pD24Hv03af13pP233X025303JL23nX23nHz2pX23Gvn2a7122fz2I3122T12mLz14Xv1JPy1YD12Vz02Fvy1H7v04T011Py03j011b01k7v0n/x0nHz1Ejv0Hnuz3Xx0Gvz00buzofz00Pxz2juz3Hy0TrmznzmzoHy0Djqy2vtymnxzS3xzi/kyG3jyG7wyyXkwJjpwHLiw2Liw2HhwmDdvlXevVPduVThsX7btDrbsj/gq3DbsDzbrT7brDvaqzjapjrbpTraojnboTrbmzrbmjrbl0Tbljrakz3ajzzZjTfZijLZiTJdVmhqAAAAgnRSTlP///////////////////////////////////////8A////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9XzUpQAAAAlwSFlzAAALEgAACxIB0t1+/AAAAB90RVh0U29mdHdhcmUATWFjcm9tZWRpYSBGaXJld29ya3MgOLVo0ngAAACqSURBVBiVY5BDAwxECGRlpgNBtpoKCMjLM8jnsYKASFJycnJ0tD1QRT6HromhHj8YMOcABYqEzc3d4uO9vIKCIkULgQIlYq5haao8YMBUDBQoZWIBAnFtAwsHD4kyoEA5l5SCkqa+qZ27X7hkBVCgUkhRXcvI2sk3MCpRugooUCOooWNs4+wdGpuQIlMDFKiWNbO0dXTx9AwICVGuBQqkFtQ1wEB9LhGeAwDSdzMEmZfC0wAAAABJRU5ErkJggg==
 EOFILE;
@@ -76,7 +70,7 @@ AAABAAMAMDAAAAEAIACoJQAANgAAABgYAAABACAAiAkAAN4lAAAQEAAAAQAgAGgEAABmLwAAKAAAADAA
 EOFILE;
 
 
-// Affichage des images (rendu en base64 des image encodÈes ci-dessus)
+// Affichage des images (rendu en base64 des image encod√©es ci-dessus)
 if(isset($_GET['img'])){
 	if(in_array($_GET['img'], $images)){
 		header("Content-type: image/" . ( substr($_GET['img'], 0, 3) == 'png' ? 'png' : 'x-icon' ));
@@ -93,67 +87,67 @@ if(isset($_GET['img'])){
 $langues = array(
 	// Anglais
 	'en' => array(
-		'langue'		 	=> 'English',
-		'autreLangue'		=> 'Version FranÁaise',
-		'autreLangueLien' 	=> 'fr',
-		'titreHtml' 		=> 'WAMPSERVER Homepage',
-		'serveurEnLigne' 	=> 'Online',
-		'serveurHorsLigne' 	=> 'Offline',
-		'versa' 			=> 'Apache Version :',
-		'versp' 			=> 'PHP Version :',
-		'versm' 			=> 'MySQL Version :',
-		'phpExt' 			=> 'Loaded Extensions : ',
-		'titrePage' 		=> 'Tools',
-		'txtProjet' 		=> 'Your Projects',
-		'mesProjets' 		=> 'My Projects',
-		'txtNoProjet' 		=> 'No projects yet.<br />To create a new one, just create a directory in \'www\'.',
-		'txtAlias' 			=> 'Your Aliases',
-		'txtNoAlias' 		=> 'No Alias yet.<br />To create a new one, use the WAMPSERVER menu.',
-		'faq' 				=> 'http://www.en.wampserver.com/faq.php',
+		'langue'			=> 'English',
+		'autreLangue'		=> 'Version Fran√ßaise',
+		'autreLangueLien'	=> 'fr',
+		'titreHtml'			=> 'WAMPSERVER Homepage',
+		'serveurEnLigne'	=> 'Online',
+		'serveurHorsLigne'	=> 'Offline',
+		'versa'				=> 'Apache Version :',
+		'versp'				=> 'PHP Version :',
+		'versm'				=> 'MySQL Version :',
+		'phpExt'			=> 'Loaded Extensions : ',
+		'titrePage'			=> 'Tools',
+		'txtProjet'			=> 'Your Projects',
+		'mesProjets'		=> 'My Projects',
+		'txtNoProjet'		=> 'No projects yet.<br />To create a new one, just create a directory in \'www\'.',
+		'txtAlias'			=> 'Your Aliases',
+		'txtNoAlias'		=> 'No Alias yet.<br />To create a new one, use the WAMPSERVER menu.',
+		'faq'				=> 'http://www.en.wampserver.com/faq.php',
 		'sur'				=> 'on',
 		'creePar'			=> 'Created by',
 
 		// Admin
-		'lesProjets' 		=> 'Projects',
-		'lesAlias' 			=> 'Aliases',
-		'servConf' 			=> 'Server Configuration',
+		'lesProjets'		=> 'Projects',
+		'lesAlias'			=> 'Aliases',
+		'servConf'			=> 'Server Configuration',
 		'serveur'			=> 'Server',
 		'passerEnLigne'		=> 'Put server online',
 		'passerHorsLigne'	=> 'Put Offline',
 		'phraseScreenshot'	=> 'For an overview of the project, you need an image file named "screenshot.jpg" in the project folder, recommended dimensions : 150x100px.',
 	),
 
-	// FranÁais
+	// Fran√ßais
 	'fr' => array(
-		'langue' 			=> 'FranÁais',
-		'autreLangue' 		=> 'English Version',
-		'autreLangueLien' 	=> 'en',
-		'serveurEnLigne' 	=> 'En Ligne',
-		'serveurHorsLigne' 	=> 'Hors Ligne',
-		'titreHtml' 		=> 'Accueil WAMPSERVER',
-		'titreConf' 		=> 'Configuration Serveur',
-		'versa' 			=> 'Version de Apache :',
-		'versp' 			=> 'Version de PHP :',
+		'langue'			=> 'Fran√ßais',
+		'autreLangue'		=> 'English Version',
+		'autreLangueLien'	=> 'en',
+		'serveurEnLigne'	=> 'En Ligne',
+		'serveurHorsLigne'	=> 'Hors Ligne',
+		'titreHtml'			=> 'Accueil WAMPSERVER',
+		'titreConf'			=> 'Configuration Serveur',
+		'versa'				=> 'Version de Apache :',
+		'versp'				=> 'Version de PHP :',
 		'versm'				=> 'Version de MySQL :',
-		'phpExt' 			=> 'Extensions ChargÈes : ',
-		'titrePage' 		=> 'Outils',
-		'txtProjet' 		=> 'Vos Projets',
-		'mesProjets' 		=> 'Mes Projets',
-		'txtNoProjet' 		=> 'Aucun projet.<br /> Pour en ajouter un nouveau, crÈez simplement un rÈpertoire dans \'www\'.',
-		'txtAlias' 			=> 'Vos Alias',
-		'txtNoAlias' 		=> 'Aucun alias.<br /> Pour en ajouter un nouveau, utilisez le menu de WAMPSERVER.',
-		'faq' 				=> 'http://www.wampserver.com/faq.php',
+		'phpExt'			=> 'Extensions Charg√©es : ',
+		'titrePage'			=> 'Outils',
+		'txtProjet'			=> 'Vos Projets',
+		'mesProjets'		=> 'Mes Projets',
+		'txtNoProjet'		=> 'Aucun projet.<br /> Pour en ajouter un nouveau, cr√©ez simplement un r√©pertoire dans \'www\'.',
+		'txtAlias'			=> 'Vos Alias',
+		'txtNoAlias'		=> 'Aucun alias.<br /> Pour en ajouter un nouveau, utilisez le menu de WAMPSERVER.',
+		'faq'				=> 'http://www.wampserver.com/faq.php',
 		'sur'				=> 'sur',
-		'creePar'			=> 'CrÈÈ par',
+		'creePar'			=> 'Cr√©√© par',
 
 		// Admin
-		'lesProjets' 		=> 'Les Projets',
-		'lesAlias' 			=> 'Les Alias',
-		'servConf' 			=> 'Configuration Serveur',
+		'lesProjets'		=> 'Les Projets',
+		'lesAlias'			=> 'Les Alias',
+		'servConf'			=> 'Configuration Serveur',
 		'serveur'			=> 'Serveur',
 		'passerEnLigne'		=> 'Passer en Ligne',
 		'passerHorsLigne'	=> 'Passer hors Ligne',
-		'phraseScreenshot'	=> 'Pour avoir un aperÁu du projet, vous devez mettre un fichier image nommÈ "screenshot.jpg" dans le dossier du projet, dimentions recommandÈes : 150x100px.',
+		'phraseScreenshot'	=> 'Pour avoir un aper√ßu du projet, vous devez mettre un fichier image nomm√© "screenshot.jpg" dans le dossier du projet, dimentions recommand√©es : 150x100px.',
 	)	
 );
 
@@ -166,7 +160,7 @@ $langues = array(
 
 session_start();
 
-// DÈfinition de la langue et des textes 
+// D√©finition de la langue et des textes 
 if(isset($_SESSION['WampServerLang']) && !isset($_GET['lang'])){
 	$langue = $_SESSION['WampServerLang'];
 } elseif (isset ($_GET['lang'])) {
@@ -179,6 +173,13 @@ if(isset($_SESSION['WampServerLang']) && !isset($_GET['lang'])){
 }
 
 
+// Redirection vers l'admin
+if(isset($_GET['go_admin'])){
+	header("Location: /?admin=home");
+	exit();
+}
+
+
 // On charge le fichier de conf locale
 if (!is_file($wampConfFile))
 	die ('Unable to open WampServer\'s config file, please change path in index.php file');
@@ -187,7 +188,7 @@ $wampConfFileContents = fread ($fp, filesize($wampConfFile));
 fclose($fp);
 
 
-// On rÈcpËres les versions des applis
+// On r√©cp√®res les versions des applis
 preg_match('|phpVersion = (.*)\n|',$wampConfFileContents,$result);
 $phpVersion = str_replace('"','',$result[1]);
 preg_match('|apacheVersion = (.*)\n|',$wampConfFileContents,$result);
@@ -210,7 +211,7 @@ if($serverStatus == 'offline'){
 }
 
 
-// Repertoires ‡ ignorer dans les projets
+// Repertoires √† ignorer dans les projets
 $projectsListIgnore = array(
 	'.',
 	'..',
@@ -229,8 +230,11 @@ while ($file = readdir($handle))
 {
 	if (is_dir($file) && !in_array($file,$projectsListIgnore)) 
 	{
-		$favicon_png = $file.'/favicon.png';
-		$favicon_ico = $file.'/favicon.ico';
+		// Si c'est un projet Symfony2, on rajoute /web/ dans l'adresse
+		$subdir = is_dir($file.'/web') ? '/web' : '';
+
+		$favicon_png = $file.$subdir.'/favicon.png';
+		$favicon_ico = $file.$subdir.'/favicon.ico';
 		$favicon_url = is_file($favicon_png) ? $favicon_png : (is_file($favicon_ico) ? $favicon_ico : '');
 
 		$favicon = ($favicon_url != '') ? '<img class="projet-favicon" src="'.$favicon_url.'"/>' : '';
@@ -954,4 +958,4 @@ EOPAGE;
 		break;
 }
 
-echo utf8_encode($pageContents);
+echo $pageContents;
