@@ -8,7 +8,7 @@ Au final, ça ressemble à ça :
 ![Screenshot de HomeWAMP](https://raw.github.com/Alex-D/HomeWAMP/master/screenshot.jpg "Screenshot de HomeWAMP")
 
 ## Installation
-1. Renommez votre `index.php` en `index.old.php`, de façon à avoir un backup si beosin
+1. Renommez votre `index.php` en `index.old.php`, de façon à avoir un backup si besoin
 2. Placez simplement le fichier index.php dans votre dossier `www`
 3. Admirez et profitez !
 
