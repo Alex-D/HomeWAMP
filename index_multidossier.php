@@ -210,37 +210,42 @@ $serverStatus = str_replace('"','',$result[1]);
 } */
 
 // Recuperation des projets
-$directory="/home/www/";
-$handle=opendir($directory);
-$projectContents = '';
-while ($file = readdir($handle)) 
-{
-    if (is_dir($directory.$file) && !in_array($file,$projectsListIgnore)) 
+$projectContents = array();
+$i=0;
+foreach($webroot as $titre => $directory)
     {
-
-        // Si c'est un projet Symfony2, on rajoute /web/ dans l'adresse
-        $subdir = is_dir($directory.$file.'/web') ? '/web' : '';
-        //Si c'est un projet CakePhP, on rajoute /app/webroot/ dans l'adresse
-        $subdir = is_dir($directory.$file.'/app/webroot/') ? '/app/webroot/' : '';
+    	$projectContents[$i]['name']=$titre;
+		$handle=opendir($directory);
+		while ($file = readdir($handle)) 
+		{	
+		    if ( is_dir($directory.$file) && !in_array($file,$projectsListIgnore) ) 
+		    {
+		        // Si c'est un projet Symfony2, on rajoute /web/ dans l'adresse
+		        $subdir = is_dir($directory.$file.'/web') ? '/web' : '';
+                //Si c'est un projet CakePhP, on rajoute /app/webroot/ dans l'adresse
+                $subdir = is_dir($directory.$file.'/app/webroot/') ? '/app/webroot/' : '';
                 
-        $favicon_png = $directory.$file.$subdir.'/favicon.png';
-        $favicon_ico = $directory.$file.$subdir.'/favicon.ico';
-        $favicon_url = is_file($favicon_png) ? $favicon_png : (is_file($favicon_ico) ? $favicon_ico : '');
-        $favicon_url=str_replace($_SERVER['DOCUMENT_ROOT'],'',$favicon_url);
-        $favicon = ($favicon_url != '') ? '<img class="projet-favicon" src="'.$favicon_url.'"/>' : '';
+		        $favicon_png = $directory.$file.$subdir.'/favicon.png';
+		        $favicon_ico = $directory.$file.$subdir.'/favicon.ico';
+		        $favicon_url = is_file($favicon_png) ? $favicon_png : (is_file($favicon_ico) ? $favicon_ico : '');
+                $favicon_url=str_replace($_SERVER['DOCUMENT_ROOT'],'',$favicon_url);
+		        $favicon = ($favicon_url != '') ? '<img class="projet-favicon" src="http://'.$_SERVER['HTTP_HOST'].$favicon_url.'"/>' : '';
 
-        $url_img = $directory.$file.'/screenshot.jpg';
-        $url_img = (is_file($url_img)) ? $url_img : 'index.php?img=pngEmptyFolder';
-        //Si sous dossier de la racine, on supprime la racine de l'url inutile
-        $emplacement=str_replace($_SERVER['DOCUMENT_ROOT'],'',$directory.$file);
-        $IMGemplacement=str_replace($_SERVER['DOCUMENT_ROOT'],'',$url_img);
-        $projectContents .= '<li class="projet"><a href="http://'.$_SERVER['HTTP_HOST'].$emplacement.'">' .
-                                $favicon.
-                                '<img class="projet-screen" src="'.$IMGemplacement.'"/>'.
-                                '<span>'.$file.'</span>'.
-                            '</a></li>';
-    }
-}
+		        $url_img = $directory.$file.$subdir.'/screenshot.jpg';
+		        $url_img = (is_file($url_img)) ? 'http://'.$_SERVER['HTTP_HOST'].str_replace($_SERVER['DOCUMENT_ROOT'],'',$url_img) : 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].'index.php?img=pngEmptyFolder';
+		        //Si sous dossier de la racine, on supprime la racine de l'url inutile
+		        $emplacement=str_replace($_SERVER['DOCUMENT_ROOT'],'',$directory.$file);
+                $IMGemplacement=str_replace($_SERVER['DOCUMENT_ROOT'],'',$url_img);
+		        $projectContents[$i]['list'].='<li class="projet"><a href="http://'.$_SERVER['HTTP_HOST'].$emplacement.'">' .
+		                                $favicon.
+		                                '<img class="projet-screen" src="'.$IMGemplacement.'"/>'.
+		                                '<span>'.$file.'</span>'.
+		                            '</a></li>'."\n";
+		    }
+		}
+		closedir($handle);
+		$i++;
+	}
 if (!isset($projectContents))
     $projectContents = $langues[$langue]['txtNoProjet'];
 
@@ -824,22 +829,37 @@ switch($page){
                     </div>
                 </div>
             </div>
-            <div id="vos_projets" class="bloc">
-                <h2>{$langues[$langue]['txtProjet']}</h2>
-                <div class="bloc_in">
-                    <p style="min-height: 36px; background: #e5ffa5; color: #4f8108; border-radius: 7px; padding: 4px 7px 4px 50px; 
-                                position: relative; border: 1px solid #74c200;margin: 0 2.3%;">
-                        <span style="display: block; height: 30px; width: 30px; background: #74c200; color: #e5ffa5; border-radius: 30px;
-                        text-align: center; font-size: 18px; font-weight: bold; line-height: 30px; position: absolute; top: 7px; left: 7px;
-                        font-family: 'Lucida Bright';">i</span>
-                        {$langues[$langue]['phraseScreenshot']}
-                    </p>
-                    <br />
-                    ${projectContents}
-                    <hr class="clear" />
-                </div>
-            </div>
-            <!-- <ul id="foot">
+EOPAGE;
+        for($d=0;$d<count($projectContents);$d++)
+        {
+                $pageContents.=<<< EOPAGE
+                        <div id="vos_projets_{$d}" class="bloc">
+                        <h2>
+EOPAGE;
+                    $pageContents.= $projectContents[$d]['name'];
+                    $pageContents.=<<< EOPAGE
+                        </h2>
+                        <div class="bloc_in">
+                            <p style="min-height: 36px; background: #e5ffa5; color: #4f8108; border-radius: 7px; padding: 4px 7px 4px 50px; 
+                                        position: relative; border: 1px solid #74c200;margin: 0 2.3%;">
+                                <span style="display: block; height: 30px; width: 30px; background: #74c200; color: #e5ffa5; border-radius: 30px;
+                                text-align: center; font-size: 18px; font-weight: bold; line-height: 30px; position: absolute; top: 7px; left: 7px;
+                                font-family: \'Lucida Bright\';">i</span>
+EOPAGE;
+                            $pageContents.=$langues[$langue]['phraseScreenshot'];
+                            $pageContents.= <<< EOPAGE
+                            </p>
+                            <br />
+EOPAGE;
+                            $pageContents.= <<< EOPAGE
+                            {$projectContents[$d]['list']}
+                            <hr class="clear" />
+                        </div>
+                    </div>
+EOPAGE;
+        }
+        $pageContents.= <<< EOPAGE
+                    <!-- <ul id="foot">
                         <li><a href="http://www.wampserver.com">WampServer</a></li> -
                         <li><a href="http://www.wampserver.com/en/donations.php">Donate</a></li> -
                         <li><a href="http://www.anaska.com">Anaska</a></li> -
@@ -881,14 +901,37 @@ case 'index':
                 <li><a href="http://alex-d.fr/">{$langues[$langue]['creePar']} Alex-D</a> - </li>
                 <li>WAMP v${wampserverVersion}</li>
             </ul> -->
-                <div id="vos_projets" class="bloc">
-                <h2>{$langues[$langue]['mesProjets']}</h2>
-                <br />
-                <ul class="projects">
-                ${projectContents}
-                </ul>
-                <hr class="clear" />
-            </div>
+
+EOPAGE;
+        for($d=0;$d<count($projectContents);$d++)
+        {
+                $pageContents.=<<< EOPAGE
+                        <div id="vos_projets" class="bloc">
+                        <h2>
+EOPAGE;
+                    $pageContents.= $projectContents[$d]['name'];
+                    $pageContents.=<<< EOPAGE
+                        </h2>
+                        <div class="bloc_in">
+                            <p style="min-height: 36px; background: #e5ffa5; color: #4f8108; border-radius: 7px; padding: 4px 7px 4px 50px; 
+                                        position: relative; border: 1px solid #74c200;margin: 0 2.3%;">
+                                <span style="display: block; height: 30px; width: 30px; background: #74c200; color: #e5ffa5; border-radius: 30px;
+                                text-align: center; font-size: 18px; font-weight: bold; line-height: 30px; position: absolute; top: 7px; left: 7px;
+                                font-family: \'Lucida Bright\';">i</span>
+EOPAGE;
+                            $pageContents.=$langues[$langue]['phraseScreenshot'];
+                            $pageContents.= <<< EOPAGE
+                            </p>
+                            <br />
+EOPAGE;
+                            $pageContents.= <<< EOPAGE
+                            {$projectContents[$d]['list']}
+                            <hr class="clear" />
+                        </div>
+                    </div>
+EOPAGE;
+        }
+        $pageContents.= <<< EOPAGE
             <hr class="clear" />
             <!-- <ul id="foot">
                 <li><a href="http://www.wampserver.com">WampServer</a></li> -
