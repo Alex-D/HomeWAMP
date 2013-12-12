@@ -20,7 +20,7 @@ Ainsi, si vous souhaitez montrer un projet indev à votre client, il ne verra pa
 Il y a une page nommée "Administration" accessible depuis l'onglet en haut à droite qui vous permet d'accéder à la configuration du serveur, versions, alias et vous pouvez en rajouter à votre guise en éditant le code.
 Il y a entre autres, un bouton pour switcher entre online et offline (plus besoin de passer par l'icône WAMP, pratique pour couper l'accès depuis ailleurs).
 
-## Liste blanche d'admnistrateurs
+## Liste blanche d'administrateurs
 Vous trouverez une liste blanche d'IP pour l'accès à l'admin en début de fichier dans une variable `$admin_ip`
 
 ## Screenshots & favicon
