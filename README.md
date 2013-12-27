@@ -27,6 +27,13 @@ Vous trouverez une liste blanche d'IP pour l'accès à l'admin en début de fich
 Pour voir un screenshot de votre site, ajoutez simplement un fichier `screenshot.jpg` dans le dossier du projet. Les dimentions recommandées sont `150x100px`.
 En ce qui concerne les favicons, HomeWAMP recherchera de lui-même s'il existe un `favicon.ico` ou `favicon.png` à la racine ou dans `/web/` pour les projets Symfony2.
 
+Note aux développeurs CakePHP, [il faut bypasser la redirection du screenshot pour que ça fonctionne correctement](https://github.com/Alex-D/HomeWAMP/issues/3), comme ceci :
+
+    RewriteEngine on
+    RewriteRule ^$ app/webroot/ [L]
+    RewriteCond %{REQUEST_FILENAME} !screenshot.jpg
+    RewriteRule (.*) app/webroot/$1 [L]
+
 ## Auteur
 Cette homepage pour WAMP a été créée par (et à la base pour) moi, n'hésitez pas à y contribuer. Vous pouvez me retrouver sur mon site personnel : http://alex-d.fr/
 
